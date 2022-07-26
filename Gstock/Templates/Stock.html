@@ -1,0 +1,93 @@
+
+ {% load static %}
+ {% load crispy_forms_tags %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>{{title}}</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/navbar-fixed/">
+
+    
+
+<link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+<link href="{% static 'css/navbar.css' %}" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+    <link href="{% static 'css/navbar-top.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+<main role="main" class="container">
+  {% if messages %}
+    <ul class="messages">
+        {% for messages in messages %}
+            <li{% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+  <div class="jumbotron">
+      <div class="header"> {{header}} </div> 
+      <div class="row">
+        <div class="col-sm-2">
+          <form method="POST" action="">{% csrf_token %}
+              {{ form|crispy }}
+            <input class="btn btn-primary" type="submit" value="Search or Export"/>
+          </form>
+        </div><!--End col-sm-2 -->
+        <br>
+          <div class="col-sm-10">
+            <div class= "display_table"> 
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th> COUNT </th>
+                    <th> Nom </th>
+                    <th> Catégorie </th>
+                    <th> Quantité </th>
+                    <th> Seuil d'alerte </th>
+                    <th>DELETE</th>
+                  </tr>
+                </thead>
+                {% for instance in queryset %}
+                  <tr>
+                    <td> {{ forloop.counter  }} </td>
+                    <td><a href="{% url 'update_Stock' instance.id %}" class="btn btn-outline-primary">{{ instance.Nom }}</a> </td>
+                    <td> {{ instance.Categorie }} </td>
+                    <td> {% if instance.Quantite <= instance.Seuil_alerte %}
+                      <div style="background-color: orange;">{{instance.Quantite}}</div>
+                      {% else %}{{instance.Quantite}}
+                      {% endif %} 
+                    </td> 
+                    <td>{{instance.Seuil_alerte}}</td> 
+                    <td><a href="{% url 'delete_produit' instance.id %}" class="btn btn-outline-danger"> Delete </a></td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div><!--End of col-sm-10-->
+      </div><!--End of row -->
+  </div>
+</main>
+</html>

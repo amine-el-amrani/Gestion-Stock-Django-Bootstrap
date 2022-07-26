@@ -1,0 +1,42 @@
+body{
+    background-color: rebeccapurple;
+    background-image:url("../images/100.jpg");
+}
+/*Align the table to the center pf the page */
+.table{
+    font-size: 13px;
+    text-align: center;
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Make alternating colors for the table rows
+ */
+ .table tr:nth-child(odd){
+    background-color: #88cae4;
+}
+
+.table tr:nth-child(even){
+    background-color: #dae5f4;
+}
+
+.display_table {
+    border-bottom-right-radius:20px ;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 20px;
+    box-shadow: 12px 12px 15px #2e6da4;
+}
+
+.header {
+    font-family: Helvetica;
+    color: #337ab7;
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    text-shadow: 6px 6px 6px #c9c6c6;
+    display: block;
+    font-weight: bolder;
+}
+
