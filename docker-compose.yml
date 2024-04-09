@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py makemigrations &&
+            python manage.py migrate &&
+            python manage.py shell -c 'from django.contrib.auth.models import User; User.objects.filter(username=\"admin\").delete() if User.objects.filter(username=\"admin\").exists() else None; User.objects.create_superuser(username=\"admin\", email=\"admin@example.com\", password=\"admin1234\")' &&
+            python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: efrei
+      POSTGRES_PASSWORD: efrei
+      POSTGRES_DB: efrei

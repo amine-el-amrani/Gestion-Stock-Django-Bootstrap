@@ -62,7 +62,7 @@ ROOT_URLCONF = 'Projet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Gstock/Templates')],  # Spécifiez le chemin absolu ou relatif vers votre répertoire de templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +75,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'Projet.wsgi.application'
 
 
@@ -82,17 +83,13 @@ WSGI_APPLICATION = 'Projet.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': { 
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'Projet', 
-        'USER': 'root', 
-        'PASSWORD': 'Amine7890', 
-        'HOST': '127.0.0.1', 
-        'PORT': '3306', 
-    }, 
-    'sqlite': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'efrei',
+        'USER': 'efrei',
+        'PASSWORD': 'efrei',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -134,5 +131,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
