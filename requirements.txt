@@ -1,0 +1,6 @@
+django
+django-import-export
+django-cors-headers
+django-crispy-forms==1.12.0
+psycopg2-binary==2.9.1
+Pillow
