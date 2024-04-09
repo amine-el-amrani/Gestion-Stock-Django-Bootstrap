@@ -62,7 +62,7 @@ ROOT_URLCONF = 'Projet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Gstock/Templates')],  # Spécifiez le chemin absolu ou relatif vers votre répertoire de templates
+        'DIRS': [os.path.join(BASE_DIR, 'Gstock/Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
